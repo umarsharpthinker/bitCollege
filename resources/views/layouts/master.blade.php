@@ -61,6 +61,9 @@
 </head>
     <body class="themeBody">
 
+<input type="hidden" id="webRtcUrl" value="{{\App\Globals\GlobalsConst::WEB_RTC_URL}}" />
+<input type="hidden" id="webRtcLogin" value="@if(\Illuminate\Support\Facades\Auth::check()) {{\Illuminate\Support\Facades\Auth::user()->email}}  @endif" />
+
                 <!--========================================================
                                           Top Nav
                 =========================================================-->

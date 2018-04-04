@@ -23,7 +23,7 @@ class GlobalsConst {
     const LIST_DATA_LIMIT = 60;
     const TEMPLATE_INDEX = -1;
     const ZERO_INDEX = 0;
-
+    const WEB_RTC_URL = "ws://89.40.127.98:8080";
 
     const EP_DEMO_COMPANY_ONE = 1;
     const EP_DEMO_COMPANY_TWO = 2;

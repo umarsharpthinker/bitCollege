@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email' => 'required|unique:users',
         'fname' => 'required|max:40',
         'lname' => 'required|max:40',
+        'username' => 'required|unique:users'
     ];
 
     protected $hidden = array('password', 'remember_token');
@@ -88,7 +89,7 @@ class User extends Authenticatable
         $phone = isset($data['phone']) ? $data['phone'] : null;
         $additional_info = isset($data['additional_info']) ? $data['additional_info'] : null;
         $photo = isset($data['photo']) ? $data['photo'] : null;
-        $username = isset($data['username']) ? $data['username'] : "Dummy";
+        $username = isset($data['username']) ? $data['username'] : "problem";
 
 
         $user->city_id = $cityId;

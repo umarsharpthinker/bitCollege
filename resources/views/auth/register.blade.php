@@ -60,6 +60,16 @@
                             </span>
                             @endif
                         </div>
+
+                        <div class="form-group">
+                            <label for="inputUsernameEmail">Username</label>
+                            <input name="username" type="text" {{ old('email') }} id="inputUsernameEmail" class="costom-control form-control">
+                            @if ($errors->has('username'))
+                                <span class="invalid-feedback" style="float: right; color: red">
+                            <strong>{{ $errors->first('username') }}</strong>
+                            </span>
+                            @endif
+                        </div>
                         <div class="form-group">
 
                             <label for="inputPassword">New Password</label>
