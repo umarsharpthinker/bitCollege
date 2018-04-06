@@ -45,6 +45,7 @@
 {{--------------------------------}}
 
 
+
 <script src="{{asset('assets/js/flatvideo/jquery.fitvids.js')}}"></script>
 {{--<script>--}}
 {{--// Basic FitVids Test--}}

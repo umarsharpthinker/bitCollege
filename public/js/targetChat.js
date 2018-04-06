@@ -3,6 +3,25 @@
  * @Version: 1.0.0
  */
 
+
+function storeRoomId() {
+    $.ajax({
+        url : url,
+        type : 'POST',
+        data: data,
+        success:function (data) {
+            // console.log(data)
+            if($.isEmptyObject(data.error)){
+                window.location = "/"
+            }else{
+                printErrorMsg(data.error)
+            }
+        }
+    });
+}
+
+
+
 jQuery(function($) {
 
     'use strict';
@@ -144,7 +163,6 @@ jQuery(function($) {
                 $(this).toggleClass("active");
 
                 $(".chatapi-windows #user-window" + id).hide();
-
             } else {
                 $(this).toggleClass("active");
 
@@ -162,16 +180,17 @@ jQuery(function($) {
                     else{
                         var connectionResult = "false";
                     }
-                    var msg = chatformat_msg('Bit College Chat Room Generated Successfully! Have A nice Chat.', 'receive', name);
-                    msg += chatformat_msg('Yes! Thanks for contacting me ;)', 'sent', 'You');
+                    $('.joinBtn').click();
+                    var msg = chatformat_msg('Bit College Chat Room Generated Successfully!', 'receive', name);
                     var html = "<div class=' user-window' style='position: relative;' id='user-window" + id + "' data-user-id='" + id + "'>";
                     html += "<div class='controlbar'><img src='" + img + "' data-user-id='" + id + "' rel='tooltip' data-animate='animated fadeIn' data-toggle='tooltip' data-original-title='" + name + "' data-placement='top' data-color-class='primary'><span class='status " + status + "'><i class='fa fa-circle'></i></span><span class='name'>" + name + "</span><span class='opts'><i class='fa fa-times closeit' data-user-id='" + id + "'></i><i class='fa fa-minus minimizeit' data-user-id='" + id + "'></i></span></div>";
-                    html += "<div >" + msg + "</div>";
-                    html += "<div class='scrollHandler' style='height:109px; overflow:hidden;'><div class='webChatArea'></div></div>";
-                    html += "<div class='input-group'><input class='form-control costom-control webChatMessage' style='width: 200px; padding-right: 50px; float: left; height: 31px '></input> <button  type='button' class='form-control btn btn-success sendMessageBtn' style='width: 50px; padding: 10px 0px 27px 0px; floa: right;'>Send</button><input type='hidden' class='connectionCheckFlag &nbsp; "+ connectionResult + "' /></div>";
+                    html += "<div>" + msg + "</div>";
+                    html += "<div class='scrollHandler' style='max-height:163px; min-height: 163px; overflow:auto;'><p class='break-word' id='webChatArea" + id + "' style='max-height: inherit; color: black'></p></div>";
+                    html += "<div class='input-group'><input class='getThisId' type='hidden' value='" + id + "' /> <input class='form-control costom-control webChatMessage' style='width: 200px; padding-right: 50px; float: left; height: 31px '></input> <button  type='button' class='form-control btn btn-success sendMessageBtn' style='width: 50px; padding: 10px 0px 27px 0px; floa: right;'>Send</button><input type='hidden' class='connectionCheckFlag &nbsp; "+ connectionResult + "' /></div>";
                     // html += "<div class='typearea'><input type='text' data-user-id='" + id + "' placeholder='Type & Enter' class='form-control'></div>";
                     html += "</div>";
                     $(".chatapi-windows").append(html);
+
                 }
             }
 

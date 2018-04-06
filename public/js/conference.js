@@ -35,17 +35,15 @@ function onJoined(room) {
 
         //when cross chat room connection will Close here
 
-        if(thisConnectionFlag == "false") {
             $(this).prop('disabled', true);
             room.leave().then(onLeft, onLeft);
-        }
+
     }).prop('disabled', false);
 
     $('.sendMessageBtn').off('click').click(function(){
         // var message = field('webChatMessage');
         //Constom Chat Handler For Multiple User Allow Texting
-            var chatClassName = 'sendMessageBtn';
-            var message =  $('.'+chatClassName).parent().children('.webChatMessage').val();
+            var message =  $(this).parent().children('.webChatMessage').val();
             addMessage(connection.username(), message );
             $('.'+chatClassName).val("");
 
@@ -78,13 +76,13 @@ function onLeft() {
     });
     $(".joinBtn").off('click').click(function(){
         var thisConnectionFlag =  $(this).parent().children('.connectionCheckFlag').hasClass('true');
-        if(thisConnectionFlag == "true") {
+        // if(thisConnectionFlag == "true") {
             if (validateForm()) {
                 $(this).prop('disabled', true);
                 muteConnectInputs();
                 start();
             }
-        }
+        // }
 
     }).prop('disabled', false);
     $('.sendMessageBtn').prop('disabled', true);
@@ -123,7 +121,8 @@ function start() {
 
 
 function joinRoom() {
-    connection.join({name: getRoomName()}).on(ROOM_EVENT.STATE, function(room){
+    var generatedRoomId = getRoomName();
+    connection.join({name:generatedRoomId }).on(ROOM_EVENT.STATE, function(room){
         var participants = room.getParticipants();
         console.log("Current number of participants in the room: " + participants.length);
         if (participants.length >= _participants) {
@@ -146,7 +145,7 @@ function joinRoom() {
         } else {
             addMessage("chat", " room is empty");
         }
-        publishLocalMedia(room);
+        // publishLocalMedia(room);
         onJoined(room);
     }).on(ROOM_EVENT.JOINED, function(participant){
         installParticipant(participant);
@@ -169,8 +168,9 @@ function addMessage(login, message) {
     var date = new Date();
     var time = date.getHours() + ":" + (date.getMinutes()<10?'0':'') + date.getMinutes();
     var newMessage = time + " " + login + " - " + message.split('\n').join('<br/>') + '<br/>';
-    var chat = $(".webChatArea");
-    chat.html(chat.html() + newMessage);
+    var idBuilder = $('.sendMessageBtn').parent().children('.getThisId').val();
+    var chat = $('#webChatArea'+idBuilder);
+    chat.html('<p>'+chat.html() + ' </p> ' + newMessage );
     chat.scrollTop(chat.prop('scrollHeight'));
 }
 
@@ -215,7 +215,9 @@ function getRoomName() {
     if (name && name !== '') {
         return name;
     }
-    return "room-"+createUUID(6);
+    var costomGeneratedRoom = "room-"+createUUID(6);
+    return costomGeneratedRoom;
+
 }
 
 function setInviteAddress(name) {

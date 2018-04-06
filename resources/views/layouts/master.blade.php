@@ -55,6 +55,12 @@
            position: absolute;
            opacity: 0;
        }
+
+       .break-word {
+           width: 16em;
+           overflow-wrap: break-word;
+       }
+
     </style>
     {{--Project Css Files Goes Here IN This Included Files--}}
     @include('includes.pfaCssHeader')

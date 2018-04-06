@@ -108,4 +108,8 @@
             {{--Project View Area Close! Code Should be write Between These Comments!--}}
         </div>
     </div>
+
+    <script>
+        $('.scrollHandler').scrollTop(100000000000000000);
+    </script>
 @endsection

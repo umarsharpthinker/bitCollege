@@ -6,14 +6,14 @@
 
 
     <div class="chat-wrapper">
-        
+        <button class="joinBtn" style="background: none; border: none;"></button>
         <h4 class="group-head">Online</h4>
         <ul class="contact-list">
             @if(isset($userProfileData))
             @foreach($userProfileData as $userProfile)
                     @if($userProfile->status == "Active")
             <li class="user-row " id='{{$userProfile->id}}' data-user-id='{{$userProfile->id}}'>
-                <button class="joinBtn" style="background: none; border: none;">
+
                 <div class="user-img">
                     <a href="#"><img src="{{asset('assets/img/people-q-c-350-250-7.jpg')}}" alt=""></a>
                 </div>
@@ -28,7 +28,6 @@
                 <div class="user-status busy">
                     <i class="fa fa-circle"></i>
                 </div>
-                </button>
             </li>
 
                 @endif
@@ -42,7 +41,7 @@
                 @foreach($userProfileData as $userProfile)
                     @if($userProfile->status == "Inactive")
                         <li class="user-row" id='{{$userProfile->id}}' data-user-id='{{$userProfile->id}}'>
-                            <a class="joinBtn">
+
                         <div class="user-img">
                             <a href="#"><img src="{{asset('assets/img/people-q-c-350-250-7.jpg')}}" alt=""></a>
                         </div>
@@ -59,7 +58,7 @@
                         </div>
                                 {{--<input type="hidden" class="form-control" value="ws://89.40.127.98:8080" id="url" />--}}
                                 {{--<input type="hidden" value="{{$userProfile->username}}" class="form-control" id="login" />--}}
-                            </a>
+
                     </li>
                     @endif
                 @endforeach
